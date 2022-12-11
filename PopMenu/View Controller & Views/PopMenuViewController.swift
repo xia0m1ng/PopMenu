@@ -504,8 +504,8 @@ extension PopMenuViewController {
             NSLayoutConstraint.activate([
                 actionsView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
                 actionsView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-                actionsView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
-                actionsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4)
+                actionsView.topAnchor.constraint(equalTo: contentView.topAnchor),
+                actionsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
             ])
         }
     }
