@@ -26,9 +26,6 @@ final public class PopMenuManager: NSObject {
         }
     }
     
-    /// Determines whether to dismiss menu after an action is selected.
-    public var popMenuShouldDismissOnSelection: Bool = true
-    
     /// The dismissal handler for pop menu.
     public var popMenuDidDismiss: ((Bool) -> Void)?
     
@@ -49,7 +46,6 @@ final public class PopMenuManager: NSObject {
 
         popMenu.delegate = popMenuDelegate
         popMenu.appearance = popMenuAppearance
-        popMenu.shouldDismissOnSelection = popMenuShouldDismissOnSelection
         popMenu.didDismiss = popMenuDidDismiss
         popMenu.shouldEnableHaptics = popMenuShouldEnableHaptics
     }
