@@ -60,9 +60,6 @@ final public class PopMenuViewController: UIViewController {
     
     // MARK: - Configurations
     
-    /// Determines whether to dismiss menu after an action is selected.
-    public var shouldDismissOnSelection: Bool = true
-    
     /// Determines whether the pan gesture is enabled on the actions.
     public var shouldEnablePanGesture: Bool = true
     
@@ -618,7 +615,6 @@ extension PopMenuViewController {
     /// - Parameter index: The index for action
     fileprivate func actionDidSelect(at index: Int, animated: Bool = true) {
         let action = actions[index]
-        action.actionSelected?(animated: animated)
         
         if shouldEnableHaptics {
             // Generate haptics
@@ -627,15 +623,23 @@ extension PopMenuViewController {
             }
         }
         
-        // Notify delegate
-        delegate?.popMenuDidSelectItem?(self, at: index)
         
         // Should dismiss or not
-        if shouldDismissOnSelection {
+        if action.dismissOnSelection {
             dismiss(animated: true) {
+                action.actionSelected?(animated: animated)
+              
+                // Notify delegate
+                self.delegate?.popMenuDidSelectItem?(self, at: index)
+              
                 // Selection made.
                 self.didDismiss?(true)
             }
+        } else {
+            action.actionSelected?(animated: animated)
+            
+            // Notify delegate
+            self.delegate?.popMenuDidSelectItem?(self, at: index)
         }
     }
     
