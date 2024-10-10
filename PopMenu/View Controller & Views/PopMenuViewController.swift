@@ -426,6 +426,7 @@ extension PopMenuViewController {
             return title1.count < title2.count
         }) {
             let sizingLabel = UILabel()
+            sizingLabel.font = appearance.popMenuFont
             sizingLabel.text = action.title
             
             let desiredWidth = sizingLabel.sizeThatFits(view.bounds.size).width
@@ -435,6 +436,7 @@ extension PopMenuViewController {
         }
         
       
+//        return 120
         if let minimumWidth = self.appearance.popMenuMinimumWidth {
             return max(minimumWidth, min(contentFitWidth,maxContentWidth))
         } else {
